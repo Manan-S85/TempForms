@@ -6,9 +6,16 @@ const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
 
-// Import routes
-const formRoutes = require('../backend/routes/forms');
-const responseRoutes = require('../backend/routes/responses');
+// Import routes with error handling
+let formRoutes, responseRoutes;
+try {
+  formRoutes = require('../backend/routes/forms');
+  responseRoutes = require('../backend/routes/responses');
+  console.log('✅ Routes imported successfully');
+} catch (error) {
+  console.error('❌ Error importing routes:', error);
+  throw error;
+}
 
 const app = express();
 
@@ -83,8 +90,55 @@ app.get('/health', (req, res) => {
     status: 'healthy',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
+    database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
+    environment: process.env.NODE_ENV,
+    mongoUri: process.env.MONGODB_URI ? 'set' : 'missing'
   });
+});
+
+// Debug endpoint
+app.get('/debug', (req, res) => {
+  res.status(200).json({
+    message: 'API is working',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV,
+    database: {
+      readyState: mongoose.connection.readyState,
+      states: {
+        0: 'disconnected',
+        1: 'connected',
+        2: 'connecting',
+        3: 'disconnecting'
+      }
+    },
+    env: {
+      mongoUri: process.env.MONGODB_URI ? 'set' : 'missing',
+      nodeEnv: process.env.NODE_ENV || 'not set'
+    }
+  });
+});
+
+// Simple test endpoint for forms
+app.post('/forms/test', (req, res) => {
+  try {
+    res.status(200).json({
+      message: 'Forms endpoint is reachable',
+      body: req.body,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: 'Test endpoint error',
+      message: error.message
+    });
+  }
+});
+
+// Debug middleware for forms
+app.use('/forms', (req, res, next) => {
+  console.log(`📝 Forms route: ${req.method} ${req.originalUrl}`);
+  console.log('Body:', req.body);
+  next();
 });
 
 // API routes
