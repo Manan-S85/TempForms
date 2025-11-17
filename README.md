@@ -16,35 +16,35 @@
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Star.png" alt="star" width="25" height="25" /> Key Features
+## ⭐ Key Features
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Timer%20Clock.png" alt="timer" width="20" height="20" /> **Auto-Expiring Forms**
+### ⏰ **Auto-Expiring Forms**
 - **Smart Deletion**: Forms automatically delete after 15 minutes, 1 hour, 24 hours, or custom time periods
 - **Zero Maintenance**: No manual cleanup required - MongoDB TTL handles everything
 - **Data Privacy**: Guaranteed data removal for compliance and privacy
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Unlocked.png" alt="unlocked" width="20" height="20" /> **Frictionless Access**
+### 🔓 **Frictionless Access**
 - **No Registration**: Create and share forms instantly without accounts
 - **Anonymous Usage**: No email, password, or personal information required
 - **Quick Deploy**: From idea to shareable form in under 30 seconds
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Shield.png" alt="shield" width="20" height="20" /> **Privacy-First Architecture**
+### 🛡️ **Privacy-First Architecture**
 - **Zero Tracking**: No analytics, cookies, or user profiling
 - **Temporary Storage**: All data has built-in expiration dates
 - **Secure Links**: Cryptographically generated unique URLs
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Link.png" alt="link" width="20" height="20" /> **Smart Link Management**
+### 🔗 **Smart Link Management**
 - **Dual Links**: Separate URLs for form filling and response viewing
 - **Password Protection**: Optional security for sensitive forms
 - **Instant Sharing**: Copy-to-clipboard functionality
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Hammer%20and%20Wrench.png" alt="tools" width="20" height="20" /> **Advanced Form Builder**
+### 🛠️ **Advanced Form Builder**
 - **Multiple Field Types**: Text, Textarea, Multiple Choice, Yes/No, Rating scales
 - **Real-time Preview**: See your form as you build it
 - **Responsive Design**: Perfect rendering on all devices
 - **Export Options**: CSV and JSON response exports
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/High%20Voltage.png" alt="performance" width="20" height="20" /> **Performance & Security**
+### ⚡ **Performance & Security**
 - **Rate Limiting**: Built-in protection against spam and abuse
 - **Input Validation**: Comprehensive server-side validation
 - **Compression**: Optimized for fast loading
@@ -52,7 +52,7 @@
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Gear.png" alt="gear" width="25" height="25" /> Tech Stack
+## ⚙️ Tech Stack
 
 <div align="center">
 
@@ -68,15 +68,15 @@
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Rocket.png" alt="rocket" width="25" height="25" /> Quick Start
+## 🚀 Quick Start
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Bookmark%20Tabs.png" alt="requirements" width="20" height="20" /> Prerequisites
+### 📋 Prerequisites
 
 - **Node.js** v18 or higher
 - **MongoDB** (local installation or MongoDB Atlas account)
 - **Git** for version control
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Package.png" alt="package" width="20" height="20" /> Installation
+### 📦 Installation
 
 1. **Clone the repository**
    ```bash
@@ -110,12 +110,12 @@
    ```
 
    **Servers will start:**
-   - <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Globe%20with%20Meridians.png" alt="globe" width="16" height="16" /> Frontend: `http://localhost:3000`
-   - <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Electric%20Plug.png" alt="plug" width="16" height="16" /> Backend API: `http://localhost:5000`
+   - 🌐 Frontend: `http://localhost:3000`
+   - 🔌 Backend API: `http://localhost:5000`
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/File%20Folder.png" alt="folder" width="25" height="25" /> Project Architecture
+## 📁 Project Architecture
 
 ```
 TempForms/
@@ -172,7 +172,7 @@ TempForms/
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Electric%20Plug.png" alt="api" width="25" height="25" /> API Reference
+## 🔌 API Reference
 
 <div align="center">
 
@@ -186,7 +186,7 @@ TempForms/
 
 </div>
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Shield.png" alt="security" width="20" height="20" /> Security Features
+### 🛡️ Security Features
 
 - **Rate Limiting**: Prevents spam and abuse with configurable limits
 - **Input Validation**: Comprehensive server-side validation using express-validator
@@ -196,9 +196,9 @@ TempForms/
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Card%20File%20Box.png" alt="database" width="25" height="25" /> Database Schema
+## 🗃️ Database Schema
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Page%20with%20Curl.png" alt="form" width="18" height="18" /> Forms Collection
+### 📄 Forms Collection
 
 ```javascript
 {
@@ -223,7 +223,7 @@ TempForms/
 }
 ```
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Clipboard.png" alt="response" width="18" height="18" /> Responses Collection
+### 📋 Responses Collection
 
 ```javascript
 {
@@ -242,49 +242,49 @@ TempForms/
 ```
 
 **Key Features:**
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Timer%20Clock.png" alt="timer" width="16" height="16" /> **TTL Indexes**: Automatic document deletion
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Link.png" alt="link" width="16" height="16" /> **Unique Links**: Cryptographically secure URLs
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Locked.png" alt="locked" width="16" height="16" /> **Optional Encryption**: Password protection with bcrypt
+- ⏰ **TTL Indexes**: Automatic document deletion
+- 🔗 **Unique Links**: Cryptographically secure URLs
+- 🔒 **Optional Encryption**: Password protection with bcrypt
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Direct%20Hit.png" alt="target" width="25" height="25" /> Use Cases
+## 🎯 Use Cases
 
 <div align="center">
 
 | Use Case | Scenario | Benefits |
 |----------|----------|----------|
-| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Graduation%20Cap.png" alt="education" width="20" height="20" /> **Education** | Class surveys, course feedback, quiz polls | No student accounts needed, automatic cleanup |
-| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Partying%20Face.png" alt="events" width="20" height="20" /> **Events** | Registration, feedback, RSVP collection | Quick setup, privacy-focused, temporary data |
-| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Building%20Construction.png" alt="corporate" width="20" height="20" /> **Corporate** | Anonymous HR surveys, team feedback | Guaranteed anonymity, compliance-friendly |
-| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Laptop.png" alt="tech" width="20" height="20" /> **Tech Events** | Hackathon judging, team formation | Fast deployment, no registration friction |
-| <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Chart%20Increasing.png" alt="research" width="20" height="20" /> **Research** | Quick polls, opinion gathering | Temporary data collection, export options |
+| 🎓 **Education** | Class surveys, course feedback, quiz polls | No student accounts needed, automatic cleanup |
+| 🎉 **Events** | Registration, feedback, RSVP collection | Quick setup, privacy-focused, temporary data |
+| 🏢 **Corporate** | Anonymous HR surveys, team feedback | Guaranteed anonymity, compliance-friendly |
+| 💻 **Tech Events** | Hackathon judging, team formation | Fast deployment, no registration friction |
+| 📈 **Research** | Quick polls, opinion gathering | Temporary data collection, export options |
 
 </div>
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Locked%20with%20Key.png" alt="security" width="25" height="25" /> Privacy & Security
+## 🔐 Privacy & Security
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Shield.png" alt="privacy" width="18" height="18" /> Privacy Guarantees
+### 🛡️ Privacy Guarantees
 
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Wastebasket.png" alt="delete" width="16" height="16" /> **Auto-Deletion**: All data automatically expires and is permanently deleted
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Eyes.png" alt="no-tracking" width="16" height="16" /> **Zero Tracking**: No cookies, analytics, or user profiling
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Person%20Raising%20Hand.png" alt="anonymous" width="16" height="16" /> **Complete Anonymity**: No personal information required or stored
+- 🗑️ **Auto-Deletion**: All data automatically expires and is permanently deleted
+- 👀 **Zero Tracking**: No cookies, analytics, or user profiling
+- 🙋 **Complete Anonymity**: No personal information required or stored
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Locked.png" alt="security" width="18" height="18" /> Security Measures
+### 🔒 Security Measures
 
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Stopwatch.png" alt="rate-limit" width="16" height="16" /> **Rate Limiting**: Configurable limits prevent spam and abuse
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Check%20Mark%20Button.png" alt="validation" width="16" height="16" /> **Input Validation**: Comprehensive sanitization and validation
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Key.png" alt="password" width="16" height="16" /> **Password Protection**: Optional bcrypt-hashed password security
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Link.png" alt="secure-links" width="16" height="16" /> **Secure URLs**: Cryptographically generated unique identifiers
-- <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Shield.png" alt="helmet" width="16" height="16" /> **Security Headers**: Helmet.js protection against common vulnerabilities
+- ⏱️ **Rate Limiting**: Configurable limits prevent spam and abuse
+- ✅ **Input Validation**: Comprehensive sanitization and validation
+- 🔑 **Password Protection**: Optional bcrypt-hashed password security
+- 🔗 **Secure URLs**: Cryptographically generated unique identifiers
+- 🛡️ **Security Headers**: Helmet.js protection against common vulnerabilities
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Rocket.png" alt="deployment" width="25" height="25" /> Deployment
+## 🚀 Deployment
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Cloud.png" alt="cloud" width="20" height="20" /> One-Click Deployment
+### ☁️ One-Click Deployment
 
 #### Vercel (Recommended)
 ```bash
@@ -305,7 +305,7 @@ cd frontend && npm run build
 # Backend API routes are in /api/index.js for serverless deployment
 ```
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Gear.png" alt="config" width="20" height="20" /> Environment Variables
+### ⚙️ Environment Variables
 
 Set these in your deployment platform:
 
@@ -317,7 +317,7 @@ JWT_SECRET=your-secure-jwt-secret
 BCRYPT_ROUNDS=12
 ```
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Card%20File%20Box.png" alt="database" width="20" height="20" /> Database Setup
+### 🗃️ Database Setup
 
 1. **MongoDB Atlas** (Recommended for production)
    - Create free cluster at [MongoDB Atlas](https://cloud.mongodb.com)
@@ -332,11 +332,11 @@ BCRYPT_ROUNDS=12
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Handshake.png" alt="contributing" width="25" height="25" /> Contributing
+## 🤝 Contributing
 
 We welcome contributions that improve privacy, security, and user experience!
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Memo.png" alt="guidelines" width="20" height="20" /> Contribution Guidelines
+### 📝 Contribution Guidelines
 
 1. **Fork** the repository
 2. **Create** feature branch (`git checkout -b feature/privacy-enhancement`)
@@ -346,7 +346,7 @@ We welcome contributions that improve privacy, security, and user experience!
 6. **Push** to your branch (`git push origin feature/privacy-enhancement`)
 7. **Open** a Pull Request with detailed description
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Light%20Bulb.png" alt="ideas" width="20" height="20" /> Areas for Contribution
+### 💡 Areas for Contribution
 
 - **Privacy Enhancements**: Additional anonymization features
 - **Security Improvements**: Enhanced protection mechanisms
@@ -358,13 +358,13 @@ We welcome contributions that improve privacy, security, and user experience!
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Page%20Facing%20Up.png" alt="license" width="25" height="25" /> License
+## 📄 License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Folded%20Hands.png" alt="acknowledgments" width="25" height="25" /> Acknowledgments
+## 🙏 Acknowledgments
 
 - **Privacy-First Design**: Built with GDPR and privacy regulations in mind
 - **Open Source Community**: Inspired by the need for transparent, secure solutions
@@ -373,11 +373,11 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Mobile%20Phone.png" alt="contact" width="25" height="25" /> Want to Contribute or Collaborate?
+## 📱 Want to Contribute or Collaborate?
 
 If you're interested in making impactful improvements to Stealth Form, have ideas for new privacy features, or want to contribute to making forms more secure and anonymous, **I'd love to hear from you!**
 
-### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Envelope.png" alt="contact" width="20" height="20" /> Get in Touch
+### ✉️ Get in Touch
 
 - **GitHub Issues**: [Open an issue](https://github.com/Manan-S85/TempForms/issues) for feature requests or bugs
 - **Pull Requests**: Contribute directly with your improvements
