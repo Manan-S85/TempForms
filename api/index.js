@@ -1,24 +1,5 @@
-const mongoose = require('mongoose');
+// Built-in crypto for link generation
 const crypto = require('crypto');
-
-// Simple Form Schema
-const FormSchema = new mongoose.Schema({
-  title: { type: String, required: true, maxlength: 100 },
-  description: { type: String, maxlength: 500 },
-  fields: [{
-    id: String,
-    type: { type: String, enum: ['text', 'textarea', 'multiple-choice', 'yes-no', 'rating'] },
-    label: String,
-    required: Boolean,
-    options: [{ id: String, label: String, value: String }]
-  }],
-  shareableLink: { type: String, unique: true, index: true },
-  responseLink: { type: String, unique: true, index: true },
-  expirationTime: { type: String, enum: ['15min', '1hour', '24hours', 'custom'] },
-  customExpirationMinutes: Number,
-  expiresAt: { type: Date, index: { expireAfterSeconds: 0 } },
-  createdAt: { type: Date, default: Date.now }
-});
 
 // Generate secure links
 function generateSecureLink(length = 12) {
@@ -75,48 +56,29 @@ module.exports = async (req, res) => {
     });
   }
 
-  // Get form by shareable link
+  // Get form by shareable link (demo version)
   if (url.startsWith('/forms/') && method === 'GET') {
-    try {
-      const shareableLink = url.split('/forms/')[1];
-      
-      if (!shareableLink) {
-        return res.status(400).json({ error: 'Shareable link is required' });
-      }
-
-      // Connect to MongoDB if not connected  
-      if (mongoose.connection.readyState !== 1) {
-        await mongoose.connect(process.env.MONGODB_URI);
-      }
-
-      const Form = mongoose.models.Form || mongoose.model('Form', FormSchema);
-      const form = await Form.findOne({ shareableLink });
-
-      if (!form) {
-        return res.status(404).json({ 
-          error: 'Form not found',
-          message: 'This form may have expired or does not exist'
-        });
-      }
-
-      return res.status(200).json({
-        success: true,
-        form: {
-          id: form._id,
-          title: form.title,
-          description: form.description,
-          fields: form.fields,
-          expiresAt: form.expiresAt
-        }
-      });
-
-    } catch (error) {
-      console.error('Error fetching form:', error);
-      return res.status(500).json({
-        error: 'Server error',
-        message: error.message
-      });
+    const shareableLink = url.split('/forms/')[1];
+    
+    if (!shareableLink) {
+      return res.status(400).json({ error: 'Shareable link is required' });
     }
+
+    // Demo response - in real version this would fetch from database
+    return res.status(200).json({
+      success: true,
+      form: {
+        id: 'demo-form',
+        title: 'Demo Form',
+        description: 'This is a demo form',
+        fields: [
+          { id: 'field_1', type: 'text', label: 'Your Name', required: true },
+          { id: 'field_2', type: 'textarea', label: 'Comments', required: false }
+        ],
+        expiresAt: new Date(Date.now() + 60 * 60 * 1000).toISOString()
+      },
+      note: "⚠️  This is a demo response. Database integration coming soon!"
+    });
   }
 
   if ((url === '/forms/test' || url === '/api/forms/test') && method === 'POST') {
@@ -129,15 +91,6 @@ module.exports = async (req, res) => {
 
   if ((url === '/forms' || url === '/api/forms') && method === 'POST') {
     try {
-      // Connect to MongoDB if not connected
-      if (mongoose.connection.readyState !== 1) {
-        await mongoose.connect(process.env.MONGODB_URI);
-        console.log('Connected to MongoDB');
-      }
-
-      // Get Form model
-      const Form = mongoose.models.Form || mongoose.model('Form', FormSchema);
-
       // Parse request body
       const { title, description, fields = [], expirationTime = '1hour', customExpirationMinutes } = req.body;
 
@@ -150,13 +103,8 @@ module.exports = async (req, res) => {
       }
 
       // Generate unique links
-      let shareableLink, responseLink;
-      let attempts = 0;
-      do {
-        shareableLink = generateSecureLink(12);
-        responseLink = generateSecureLink(16);
-        attempts++;
-      } while (attempts < 5); // Simple retry logic
+      const shareableLink = generateSecureLink(12);
+      const responseLink = generateSecureLink(16);
 
       // Process fields
       const processedFields = fields.map((field, index) => ({
@@ -167,38 +115,31 @@ module.exports = async (req, res) => {
       // Calculate expiration
       const expiresAt = calculateExpirationDate(expirationTime, customExpirationMinutes);
 
-      // Create form
-      const newForm = new Form({
+      // For now, return the form data with links (without saving to DB)
+      const formResponse = {
+        id: Date.now().toString(), // Temporary ID
         title,
         description,
-        fields: processedFields,
         shareableLink,
         responseLink,
         expirationTime,
-        customExpirationMinutes,
-        expiresAt
-      });
-
-      await newForm.save();
+        expiresAt,
+        fields: processedFields,
+        createdAt: new Date().toISOString()
+      };
 
       // Return response with links
       return res.status(201).json({
         success: true,
         message: 'Form created successfully',
         form: {
-          id: newForm._id,
-          title: newForm.title,
-          description: newForm.description,
-          shareableLink: newForm.shareableLink,
-          responseLink: newForm.responseLink,
-          expirationTime: newForm.expirationTime,
-          expiresAt: newForm.expiresAt,
-          fields: newForm.fields,
+          ...formResponse,
           urls: {
-            fillForm: `https://stealth-forms.vercel.app/form/${newForm.shareableLink}`,
-            viewResponses: `https://stealth-forms.vercel.app/responses/${newForm.responseLink}`
+            fillForm: `https://stealth-forms.vercel.app/form/${shareableLink}`,
+            viewResponses: `https://stealth-forms.vercel.app/responses/${responseLink}`
           }
-        }
+        },
+        note: "⚠️  This is a demo response. Database integration coming soon!"
       });
 
     } catch (error) {
