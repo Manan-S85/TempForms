@@ -12,7 +12,7 @@ module.exports = (req, res) => {
   // Handle different routes
   const { url, method } = req;
 
-  if (url === '/health' && method === 'GET') {
+  if ((url === '/health' || url === '/api/health') && method === 'GET') {
     return res.status(200).json({
       status: 'healthy',
       timestamp: new Date().toISOString(),
@@ -20,7 +20,7 @@ module.exports = (req, res) => {
     });
   }
 
-  if (url === '/debug' && method === 'GET') {
+  if ((url === '/debug' || url === '/api/debug') && method === 'GET') {
     return res.status(200).json({
       message: 'Debug endpoint working',
       timestamp: new Date().toISOString(),
@@ -31,7 +31,7 @@ module.exports = (req, res) => {
     });
   }
 
-  if (url === '/forms/test' && method === 'POST') {
+  if ((url === '/forms/test' || url === '/api/forms/test') && method === 'POST') {
     return res.status(200).json({
       message: 'Forms test endpoint working',
       body: req.body,
@@ -39,7 +39,7 @@ module.exports = (req, res) => {
     });
   }
 
-  if (url === '/forms' && method === 'POST') {
+  if ((url === '/forms' || url === '/api/forms') && method === 'POST') {
     return res.status(201).json({
       success: true,
       message: 'Basic form endpoint working',
