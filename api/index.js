@@ -60,7 +60,7 @@ const createFormLimiter = rateLimit({
 });
 
 app.use(limiter);
-app.use('/api/forms', createFormLimiter);
+app.use('/forms', createFormLimiter);
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
@@ -88,8 +88,8 @@ app.get('/health', (req, res) => {
 });
 
 // API routes
-app.use('/api/forms', formRoutes);
-app.use('/api/responses', responseRoutes);
+app.use('/forms', formRoutes);
+app.use('/responses', responseRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {
@@ -102,6 +102,9 @@ app.use('*', (req, res) => {
 // Error handling middleware
 app.use((error, req, res, next) => {
   console.error('💥 Unhandled error:', error);
+  console.error('Request URL:', req.originalUrl);
+  console.error('Request method:', req.method);
+  console.error('Request body:', req.body);
   
   res.status(error.status || 500).json({
     error: process.env.NODE_ENV === 'production' 
