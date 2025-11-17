@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Shield, Zap, Users } from 'lucide-react';
+import { Shield, Zap, Users, Mail } from 'lucide-react';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -105,12 +105,11 @@ const Layout = ({ children }) => {
                 </li>
                 <li>
                   <a 
-                    href="https://github.com/tempforms/tempforms" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-primary-600 transition-colors"
+                    href="mailto:mananzks95@gmail.com" 
+                    className="text-gray-600 hover:text-primary-600 transition-colors flex items-center space-x-2"
                   >
-                    GitHub
+                    <Mail className="w-4 h-4" />
+                    <span>Contact</span>
                   </a>
                 </li>
                 <li>

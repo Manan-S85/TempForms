@@ -48,7 +48,7 @@ const ViewResponsesPage = () => {
     loadResponses();
   }, [responseLink]);
 
-  // Update time remaining
+  // Update time remaining and show pre-expiration warnings
   useEffect(() => {
     if (form?.expiresAt) {
       const updateTimer = () => {
@@ -64,6 +64,29 @@ const ViewResponsesPage = () => {
         const hours = Math.floor(timeLeft / (1000 * 60 * 60));
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        
+        // Show warning when 2 minutes or less remaining
+        if (timeLeft <= 2 * 60 * 1000 && timeLeft > 60 * 1000) {
+          toast.error(
+            `WARNING: Form expires in ${minutes}m ${seconds}s! Responses will no longer be available.`,
+            {
+              id: 'expiration-warning',
+              duration: 4000,
+              position: 'top-center',
+            }
+          );
+        }
+        // Show critical warning when 1 minute or less remaining
+        else if (timeLeft <= 60 * 1000 && timeLeft > 30 * 1000) {
+          toast.error(
+            `CRITICAL: Form expires in ${seconds}s! This is your final warning!`,
+            {
+              id: 'critical-warning',
+              duration: 6000,
+              position: 'top-center',
+            }
+          );
+        }
         
         if (hours > 0) {
           setTimeRemaining(`${hours}h ${minutes}m ${seconds}s`);

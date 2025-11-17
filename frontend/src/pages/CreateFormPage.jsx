@@ -16,7 +16,8 @@ import {
   ToggleLeft,
   Star,
   Save,
-  ArrowRight
+  ArrowRight,
+  Lock
 } from 'lucide-react';
 import { formAPI, apiUtils } from '../utils/api';
 import { FIELD_TYPES, EXPIRATION_OPTIONS, FIELD_TYPE_CONFIG } from '../utils/constants';
@@ -244,12 +245,16 @@ const CreateFormPage = () => {
                       {...register('customExpirationMinutes', {
                         required: watchExpirationTime === 'custom' ? 'Custom time is required' : false,
                         min: { value: 1, message: 'Minimum 1 minute' },
-                        max: { value: 43200, message: 'Maximum 30 days (43200 minutes)' }
+                        max: { value: 1440, message: 'Maximum 24 hours (1440 minutes)' }
                       })}
                       type="number"
                       className="input"
                       placeholder="60"
+                      max={1440}
                     />
+                    <p className="text-xs text-gray-400 mt-1">
+                      Enter minutes (1-1440). Examples: 60 = 1 hour, 480 = 8 hours, 1440 = 24 hours
+                    </p>
                     {errors.customExpirationMinutes && (
                       <p className="error-message">{errors.customExpirationMinutes.message}</p>
                     )}
@@ -668,8 +673,9 @@ const FormCreatedSuccess = ({ form, onCopyLink }) => {
                   {window.location.origin}/responses/{form.responseLink}
                 </div>
                 {form.hasResponsePassword && (
-                  <p className="text-sm text-warning-600 mt-2">
-                    🔒 This link is password protected
+                  <p className="text-sm text-warning-600 mt-2 flex items-center">
+                    <Lock className="w-4 h-4 mr-1" />
+                    This link is password protected
                   </p>
                 )}
               </div>

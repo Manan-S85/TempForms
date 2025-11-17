@@ -226,6 +226,8 @@ router.get('/:responseLink',
           timeRemaining: form.timeRemaining,
           expiresAt: form.expiresAt,
           createdAt: form.createdAt,
+          isExpired: form.isExpired,
+          isAboutToExpire: form.isAboutToExpire,
           fields: form.fields.sort((a, b) => a.order - b.order)
         },
         responses: formattedResponses,

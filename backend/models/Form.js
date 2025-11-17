@@ -78,12 +78,12 @@ const formSchema = new mongoose.Schema({
   expirationTime: {
     type: String,
     required: true,
-    enum: ['15min', '1hour', '24hours', 'custom']
+    enum: ['15min', '30min', '1hour', 'custom']
   },
   customExpirationMinutes: {
     type: Number,
     min: 1,
-    max: 43200 // Maximum 30 days in minutes
+    max: 1440 // Maximum 24 hours in minutes
   },
   createdAt: {
     type: Date,
@@ -124,11 +124,11 @@ formSchema.pre('save', function(next) {
       case '15min':
         this.expiresAt = new Date(now.getTime() + 15 * 60 * 1000);
         break;
+      case '30min':
+        this.expiresAt = new Date(now.getTime() + 30 * 60 * 1000);
+        break;
       case '1hour':
         this.expiresAt = new Date(now.getTime() + 60 * 60 * 1000);
-        break;
-      case '24hours':
-        this.expiresAt = new Date(now.getTime() + 24 * 60 * 60 * 1000);
         break;
       case 'custom':
         if (!this.customExpirationMinutes) {
@@ -165,6 +165,13 @@ formSchema.virtual('timeRemaining').get(function() {
 // Virtual for checking if form is expired
 formSchema.virtual('isExpired').get(function() {
   return new Date() > this.expiresAt;
+});
+
+// Virtual for checking if form is about to expire (≤ 2 minutes remaining)
+formSchema.virtual('isAboutToExpire').get(function() {
+  const now = new Date();
+  const timeLeft = this.expiresAt.getTime() - now.getTime();
+  return timeLeft > 0 && timeLeft <= (2 * 60 * 1000); // 2 minutes in milliseconds
 });
 
 // Instance method to check if form is still active

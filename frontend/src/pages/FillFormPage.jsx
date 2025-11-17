@@ -12,7 +12,8 @@ import {
   AlertCircle,
   Eye,
   Star,
-  Timer
+  Timer,
+  Lock
 } from 'lucide-react';
 import { formAPI, apiUtils } from '../utils/api';
 import { FIELD_TYPES } from '../utils/constants';
@@ -249,8 +250,9 @@ const FillFormPage = () => {
           className="text-center mt-12"
         >
           <div className="glass p-6 rounded-2xl inline-block">
-            <p className="text-sm text-slate-600 mb-2">
-              🔒 This form will automatically delete when it expires for your privacy
+            <p className="text-sm text-slate-600 mb-2 flex items-center">
+              <Lock className="w-4 h-4 mr-1" />
+              This form will automatically delete when it expires for your privacy
             </p>
             <p className="text-xs text-slate-500">
               Powered by <span className="font-bold text-gradient">TempForms</span>
@@ -502,8 +504,9 @@ const SubmissionSuccess = ({ form }) => {
               
               {/* Privacy Note */}
               <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600">
-                  🔒 Your response is anonymous and will be automatically deleted 
+                <p className="text-sm text-gray-600 flex items-start">
+                  <Lock className="w-4 h-4 mr-1 mt-0.5 flex-shrink-0" />
+                  Your response is anonymous and will be automatically deleted 
                   when this form expires.
                 </p>
               </div>
