@@ -128,28 +128,50 @@ const CreateFormPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Create a Temporary Form
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Build your form with dynamic fields and set how long it should stay active
-          </p>
+    <div className="min-h-screen bg-gray-900">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/50 to-indigo-900/50" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '-2s'}} />
         </div>
-
+        
+        <div className="relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center py-20"
+          >
+            <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
+              Create Your Form
+            </h1>
+            <p className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+              Build beautiful, temporary forms that expire automatically. No accounts
+              required, perfect for surveys, feedback, and data collection.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+      
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
           {/* Form Details */}
-          <div className="card">
-            <div className="card-header">
-              <h2 className="text-xl font-semibold text-gray-900">Form Details</h2>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden"
+          >
+            <div className="px-8 py-6 bg-gray-800 border-b border-gray-700">
+              <h2 className="text-2xl font-bold text-white">Form Details</h2>
+              <p className="text-sm text-gray-300 mt-1">Give your form a title and description</p>
             </div>
-            <div className="card-body space-y-6">
+            <div className="px-8 py-6 space-y-6">
               {/* Title */}
               <div className="form-field">
-                <label className="label label-required">Form Title</label>
+                <label className="block text-sm font-medium text-white mb-2">Form Title <span className="text-red-400">*</span></label>
                 <input
                   {...register('title', { 
                     required: 'Title is required',
@@ -165,7 +187,7 @@ const CreateFormPage = () => {
 
               {/* Description */}
               <div className="form-field">
-                <label className="label">Description (Optional)</label>
+                <label className="block text-sm font-medium text-white mb-2">Description (Optional)</label>
                 <textarea
                   {...register('description', {
                     maxLength: { value: 500, message: 'Description must be less than 500 characters' }
@@ -181,15 +203,15 @@ const CreateFormPage = () => {
 
               {/* Expiration Time */}
               <div className="form-field">
-                <label className="label label-required">Expiration Time</label>
+                <label className="block text-sm font-medium text-white mb-4">Expiration Time <span className="text-red-400">*</span></label>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                   {EXPIRATION_OPTIONS.map((option) => (
                     <label
                       key={option.value}
                       className={`relative flex items-center p-4 border rounded-lg cursor-pointer transition-all ${
                         watchExpirationTime === option.value
-                          ? 'border-primary-500 bg-primary-50'
-                          : 'border-gray-200 hover:border-gray-300'
+                          ? 'border-blue-500 bg-blue-900/30'
+                          : 'border-gray-600 hover:border-gray-500 bg-gray-800'
                       }`}
                     >
                       <input
@@ -200,14 +222,14 @@ const CreateFormPage = () => {
                       />
                       <div className="flex-1">
                         <div className="flex items-center space-x-2">
-                          <div className="text-lg font-semibold text-gray-900">
+                          <div className="text-lg font-semibold text-white">
                             {option.label}
                           </div>
                           {option.popular && (
-                            <span className="badge badge-success text-xs">Popular</span>
+                            <span className="bg-green-600 text-white px-2 py-1 rounded text-xs">Popular</span>
                           )}
                         </div>
-                        <p className="text-sm text-gray-600 mt-1">
+                        <p className="text-sm text-gray-300 mt-1">
                           {option.description}
                         </p>
                       </div>
@@ -217,7 +239,7 @@ const CreateFormPage = () => {
                 
                 {watchExpirationTime === 'custom' && (
                   <div className="mt-4">
-                    <label className="label">Custom expiration (minutes)</label>
+                    <label className="block text-sm font-medium text-white mb-2">Custom expiration (minutes)</label>
                     <input
                       {...register('customExpirationMinutes', {
                         required: watchExpirationTime === 'custom' ? 'Custom time is required' : false,
@@ -239,35 +261,45 @@ const CreateFormPage = () => {
                 )}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Form Fields */}
-          <div className="card">
-            <div className="card-header flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-gray-900">Form Fields</h2>
-              <span className="text-sm text-gray-500">
-                {fields.length} field{fields.length !== 1 ? 's' : ''}
-              </span>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden"
+          >
+            <div className="px-8 py-6 bg-gray-800 border-b border-gray-700 flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-white">Form Fields</h2>
+                <p className="text-sm text-gray-300 mt-1">Build your form with interactive fields</p>
+              </div>
+              <div className="bg-blue-600 text-white px-3 py-1 rounded-full flex items-center space-x-1">
+                <span className="text-xs font-semibold">{fields.length} field{fields.length !== 1 ? 's' : ''}</span>
+              </div>
             </div>
-            <div className="card-body">
+            <div className="px-8 py-6 space-y-6">
               {/* Field Type Buttons */}
-              <div className="mb-6">
-                <label className="label">Add Field Type</label>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+              <div className="mb-8">
+                <label className="block text-sm font-medium text-white mb-4">Add Field Type</label>
+                <div className="field-type-grid">
                   {Object.entries(FIELD_TYPE_CONFIG).map(([type, config]) => {
                     const IconComponent = fieldTypeIcons[type];
                     return (
-                      <button
+                      <motion.button
                         key={type}
                         type="button"
                         onClick={() => addField(type)}
-                        className="flex flex-col items-center p-3 border border-gray-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors group"
+                        className="field-type-button hover-lift group"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        <IconComponent className="w-5 h-5 text-gray-600 group-hover:text-primary-600 mb-2" />
-                        <span className="text-sm font-medium text-gray-700 group-hover:text-primary-700">
+                        <IconComponent className="field-type-icon" />
+                        <span className="text-sm font-semibold text-white group-hover:text-blue-400">
                           {config.label}
                         </span>
-                      </button>
+                      </motion.button>
                     );
                   })}
                 </div>
@@ -282,7 +314,7 @@ const CreateFormPage = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
-                      className="border border-gray-200 rounded-lg p-4 bg-white"
+                      className="border border-gray-600 rounded-lg p-4 bg-gray-700"
                     >
                       <FieldEditor
                         field={field}
@@ -298,18 +330,27 @@ const CreateFormPage = () => {
                 </AnimatePresence>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Settings */}
-          <div className="card">
-            <div className="card-header">
-              <h2 className="text-xl font-semibold text-gray-900">Settings</h2>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden"
+          >
+            <div className="px-8 py-6 bg-gray-800 border-b border-gray-700">
+              <h2 className="text-2xl font-bold text-white flex items-center space-x-2">
+                <Settings className="w-6 h-6" />
+                <span>Settings</span>
+              </h2>
+              <p className="text-sm text-gray-300 mt-1">Configure form behavior and security</p>
             </div>
-            <div className="card-body space-y-4">
+            <div className="px-8 py-6 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <label className="label mb-0">Allow Multiple Responses</label>
-                  <p className="text-sm text-gray-600">Allow users to submit multiple responses</p>
+                  <label className="block text-sm font-medium text-white mb-1">Allow Multiple Responses</label>
+                  <p className="text-sm text-gray-300">Allow users to submit multiple responses</p>
                 </div>
                 <input
                   {...register('settings.allowMultipleResponses')}
@@ -320,8 +361,8 @@ const CreateFormPage = () => {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <label className="label mb-0">Show Response Count</label>
-                  <p className="text-sm text-gray-600">Display how many responses were submitted</p>
+                  <label className="block text-sm font-medium text-white mb-1">Show Response Count</label>
+                  <p className="text-sm text-gray-300">Display how many responses were submitted</p>
                 </div>
                 <input
                   {...register('settings.showResponseCount')}
@@ -331,7 +372,7 @@ const CreateFormPage = () => {
               </div>
 
               <div className="form-field">
-                <label className="label">Response Password (Optional)</label>
+                <label className="block text-sm font-medium text-white mb-2">Response Password (Optional)</label>
                 <input
                   {...register('responsePassword', {
                     minLength: { value: 4, message: 'Password must be at least 4 characters' },
@@ -344,30 +385,36 @@ const CreateFormPage = () => {
                 {errors.responsePassword && (
                   <p className="error-message">{errors.responsePassword.message}</p>
                 )}
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-gray-400 mt-1">
                   If set, viewers will need this password to see responses
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Submit Button */}
-          <div className="flex justify-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="flex justify-center"
+          >
             <button
               type="submit"
               disabled={isCreating}
-              className="btn-primary btn-lg flex items-center space-x-2 min-w-48"
+              className="btn-primary btn-lg flex items-center space-x-3 min-w-56 shadow-glow hover:shadow-glow-blue"
             >
               {isCreating ? (
-                <LoadingSpinner size="sm" text="Creating..." />
+                <LoadingSpinner size="sm" text="Creating your form..." />
               ) : (
                 <>
-                  <Save className="w-5 h-5" />
-                  <span>Create Form</span>
+                  <Save className="w-6 h-6" />
+                  <span className="font-bold">Create Form</span>
+                  <ArrowRight className="w-5 h-5 ml-2" />
                 </>
               )}
             </button>
-          </div>
+          </motion.div>
         </form>
       </div>
     </div>
@@ -383,10 +430,10 @@ const FieldEditor = ({ field, index, register, setValue, errors, onRemove, canRe
       {/* Field Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
-          <span className="w-6 h-6 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center text-sm font-semibold">
+          <span className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-semibold">
             {index + 1}
           </span>
-          <span className="font-medium text-gray-700">
+          <span className="font-medium text-white">
             {FIELD_TYPE_CONFIG[field.type].label}
           </span>
         </div>
@@ -394,7 +441,7 @@ const FieldEditor = ({ field, index, register, setValue, errors, onRemove, canRe
           <button
             type="button"
             onClick={onRemove}
-            className="text-danger-600 hover:text-danger-700 p-1"
+            className="text-red-400 hover:text-red-300 p-1"
           >
             <Trash2 className="w-4 h-4" />
           </button>
@@ -476,7 +523,7 @@ const FieldEditor = ({ field, index, register, setValue, errors, onRemove, canRe
           type="checkbox"
           className="rounded"
         />
-        <label className="text-sm text-gray-700">Required field</label>
+        <label className="text-sm text-white">Required field</label>
       </div>
     </div>
   );

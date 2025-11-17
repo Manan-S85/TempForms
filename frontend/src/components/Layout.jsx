@@ -1,24 +1,24 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Clock, Shield, Zap, Users } from 'lucide-react';
+import { Shield, Zap, Users } from 'lucide-react';
 
 const Layout = ({ children }) => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+      <header className="fixed top-4 left-4 right-4 z-50 bg-gray-900/90 backdrop-blur-md border border-gray-700 rounded-2xl shadow-2xl">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+          <div className="flex justify-between items-center h-14">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2 group">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center group-hover:shadow-lg transition-all duration-200">
-                <Clock className="w-5 h-5 text-white" />
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center group-hover:shadow-lg transition-all duration-300">
+                <Shield className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors">
-                TempForms
+              <span className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                StealthForm
               </span>
             </Link>
 
@@ -28,8 +28,8 @@ const Layout = ({ children }) => {
                 to="/" 
                 className={`text-sm font-medium transition-colors ${
                   isHomePage 
-                    ? 'text-primary-600' 
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'text-blue-400' 
+                    : 'text-gray-300 hover:text-white'
                 }`}
               >
                 Home
@@ -52,8 +52,8 @@ const Layout = ({ children }) => {
         </div>
       </header>
 
-      {/* Main content */}
-      <main className="flex-1">
+      {/* Main Content */}
+      <main className="flex-grow pt-0">
         {children}
       </main>
 
@@ -64,14 +64,14 @@ const Layout = ({ children }) => {
             {/* Brand */}
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-6 h-6 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center">
-                  <Clock className="w-4 h-4 text-white" />
+                <div className="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <Shield className="w-4 h-4 text-white" />
                 </div>
-                <span className="text-lg font-bold text-gray-900">TempForms</span>
+                <span className="text-lg font-bold text-gray-900">StealthForm</span>
               </div>
               <p className="text-gray-600 text-sm max-w-md">
-                Create temporary forms that automatically delete after a set time. 
-                Privacy-focused, no login required, perfect for quick surveys and anonymous feedback.
+                Create anonymous forms that collect responses invisibly and vanish without a trace. 
+                No registration, no tracking, no permanent storage.
               </p>
             </div>
 
@@ -80,20 +80,16 @@ const Layout = ({ children }) => {
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Features</h3>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li className="flex items-center space-x-2">
-                  <Clock className="w-4 h-4 text-primary-500" />
-                  <span>Auto-expiring forms</span>
+                  <Shield className="w-4 h-4 text-blue-600" />
+                  <span>Anonymous by design</span>
                 </li>
                 <li className="flex items-center space-x-2">
-                  <Shield className="w-4 h-4 text-primary-500" />
-                  <span>Privacy-focused</span>
+                  <Zap className="w-4 h-4 text-blue-600" />
+                  <span>No registration needed</span>
                 </li>
                 <li className="flex items-center space-x-2">
-                  <Zap className="w-4 h-4 text-primary-500" />
-                  <span>No login required</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <Users className="w-4 h-4 text-primary-500" />
-                  <span>Anonymous responses</span>
+                  <Users className="w-4 h-4 text-blue-600" />
+                  <span>Zero tracking</span>
                 </li>
               </ul>
             </div>
@@ -140,7 +136,7 @@ const Layout = ({ children }) => {
           {/* Bottom */}
           <div className="border-t border-gray-200 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-gray-500">
-              © {new Date().getFullYear()} TempForms. All rights reserved.
+              © {new Date().getFullYear()} StealthForm. Built for privacy.
             </p>
             <div className="flex items-center space-x-4 mt-4 md:mt-0">
               <span className="text-sm text-gray-500">

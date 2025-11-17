@@ -143,47 +143,61 @@ const FillFormPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Form Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
-        >
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            {form.title}
-          </h1>
-          
-          {form.description && (
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-6">
-              {form.description}
-            </p>
-          )}
-
-          {/* Form Info */}
-          <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-500">
-            <div className="flex items-center space-x-1">
-              <Timer className="w-4 h-4" />
-              <span>Expires in: {timeRemaining}</span>
-            </div>
+    <div className="min-h-screen relative">
+      {/* Hero Section */}
+      <div className="form-header relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 mix-blend-multiply" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" />
+          <div className="absolute top-0 right-1/4 w-80 h-80 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-float" style={{animationDelay: '-3s'}} />
+          <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{animationDelay: '-1s'}} />
+        </div>
+        
+        <div className="form-header-content relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center py-12"
+          >
+            <h1 className="text-3xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+              {form.title}
+            </h1>
             
-            {form.responseCount !== null && form.settings?.showResponseCount && (
-              <div className="flex items-center space-x-1">
-                <Users className="w-4 h-4" />
-                <span>{form.responseCount} response{form.responseCount !== 1 ? 's' : ''}</span>
-              </div>
+            {form.description && (
+              <p className="text-lg text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed">
+                {form.description}
+              </p>
             )}
-          </div>
-        </motion.div>
+
+            {/* Form Info */}
+            <div className="flex flex-wrap justify-center items-center gap-6 text-white/80">
+              <div className="glass px-4 py-2 rounded-full flex items-center space-x-2">
+                <Timer className="w-4 h-4" />
+                <span className="font-medium">Expires in: {timeRemaining}</span>
+              </div>
+              
+              {form.responseCount !== null && form.settings?.showResponseCount && (
+                <div className="glass px-4 py-2 rounded-full flex items-center space-x-2">
+                  <Users className="w-4 h-4" />
+                  <span className="font-medium">{form.responseCount} response{form.responseCount !== 1 ? 's' : ''}</span>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+      
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 pb-16">
 
         {/* Form */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.2 }}
+          className="card-solid hover-lift"
         >
-          <form onSubmit={handleSubmit(onSubmit)} className="card">
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="card-body space-y-8">
               {form.fields.map((field, index) => (
                 <motion.div
@@ -202,31 +216,47 @@ const FillFormPage = () => {
               ))}
 
               {/* Submit Button */}
-              <div className="flex justify-center pt-6">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * (form.fields.length + 1) }}
+                className="flex justify-center pt-8"
+              >
                 <button
                   type="submit"
                   disabled={submitting || timeRemaining === 'Expired'}
-                  className="btn-primary btn-lg flex items-center space-x-2 min-w-48"
+                  className="btn-primary btn-lg flex items-center space-x-3 min-w-56 shadow-glow hover:shadow-glow-blue"
                 >
                   {submitting ? (
-                    <LoadingSpinner size="sm" text="Submitting..." />
+                    <LoadingSpinner size="sm" text="Submitting your response..." />
                   ) : (
                     <>
-                      <Send className="w-5 h-5" />
-                      <span>Submit Response</span>
+                      <Send className="w-6 h-6" />
+                      <span className="font-bold">Submit Response</span>
                     </>
                   )}
                 </button>
-              </div>
+              </motion.div>
             </div>
           </form>
         </motion.div>
 
         {/* Footer */}
-        <div className="text-center mt-8 text-sm text-gray-500">
-          <p>This form will automatically delete when it expires.</p>
-          <p>Powered by <span className="font-semibold text-primary-600">TempForms</span></p>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="text-center mt-12"
+        >
+          <div className="glass p-6 rounded-2xl inline-block">
+            <p className="text-sm text-slate-600 mb-2">
+              🔒 This form will automatically delete when it expires for your privacy
+            </p>
+            <p className="text-xs text-slate-500">
+              Powered by <span className="font-bold text-gradient">TempForms</span>
+            </p>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

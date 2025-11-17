@@ -1,181 +1,190 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { 
+  Shield, 
+  Clock, 
+  Eye, 
+  Trash2, 
+  Lock, 
+  CheckCircle,
+  ArrowRight,
+  Rocket,
+  Key,
+  Link as LinkIcon,
+  FileText,
+  Users,
+  Zap
+} from 'lucide-react';
 
 const HomePage = () => {
-  console.log('HomePage component rendering...');
-  
-  return (
-    <div className="min-h-screen bg-white flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          🎉 TempForms is Working! 🎉
-        </h1>
-        <p className="text-xl text-gray-600 mb-8">
-          The React app is successfully running
-        </p>
-        <Link 
-          to="/create" 
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700"
-        >
-          Create Form
-        </Link>
-      </div>
-    </div>
-  );
-};
+  // No mouse tracking needed
 
-// Keep the original HomePage as backup
-const OriginalHomePage = () => {
   const features = [
     {
-      icon: Timer,
-      title: 'Auto-Expiring Forms',
-      description: 'Forms automatically delete after 15 minutes, 1 hour, 24 hours, or custom time',
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-100',
-    },
-    {
-      icon: Zap,
-      title: 'No Login Required',
-      description: 'Create and share forms instantly without sign-up, email, or password',
-      color: 'text-green-600',
-      bgColor: 'bg-green-100',
-    },
-    {
+      title: 'Stealth Mode',
+      description: 'Forms operate in complete stealth - no tracking, no permanent storage, no digital footprint.',
       icon: Shield,
-      title: 'Anonymous & Private',
-      description: 'No permanent data storage, no tracking, all data auto-deleted',
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-100',
+      color: 'text-blue-400',
+      bgColor: 'bg-blue-500/10',
     },
     {
-      icon: Globe,
-      title: 'Lightweight Sharing',
-      description: 'Instant link generation for form filling and viewing responses',
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-100',
+      title: 'Auto-Destruction',
+      description: 'Forms automatically self-destruct after expiration. Your data vanishes without a trace.',
+      icon: Clock,
+      color: 'text-green-400',
+      bgColor: 'bg-green-500/10',
     },
     {
+      title: 'Secret Access',
+      description: 'Dual-link system: public form link and private response key for secure data access.',
+      icon: Key,
+      color: 'text-purple-400',
+      bgColor: 'bg-purple-500/10',
+    },
+    {
+      title: 'Anonymous',
+      description: 'No accounts, no login required. Create and share forms completely anonymously.',
+      icon: Eye,
+      color: 'text-cyan-400',
+      bgColor: 'bg-cyan-500/10',
+    },
+    {
+      title: 'Instant Links',
+      description: 'Get shareable form link and private response key instantly upon creation.',
+      icon: LinkIcon,
+      color: 'text-orange-400',
+      bgColor: 'bg-orange-500/10',
+    },
+    {
+      title: 'Zero Trace',
+      description: 'Once expired, forms leave no trace. Perfect for sensitive data collection.',
       icon: Trash2,
-      title: 'Zero Cleanup',
-      description: 'MongoDB TTL indexes automatically delete expired forms and responses',
-      color: 'text-red-600',
-      bgColor: 'bg-red-100',
-    },
-    {
-      icon: Users,
-      title: 'Dynamic Fields',
-      description: 'Text, textarea, multiple choice, yes/no, and rating fields',
-      color: 'text-indigo-600',
-      bgColor: 'bg-indigo-100',
+      color: 'text-red-400',
+      bgColor: 'bg-red-500/10',
     },
   ];
 
   const useCases = [
     {
-      title: 'Students',
-      description: 'Quick class surveys and feedback collection',
-      icon: '🎓',
-    },
-    {
-      title: 'Event Organizers',
-      description: 'Registration forms and post-event feedback',
-      icon: '🎉',
-    },
-    {
-      title: 'Hackathons',
-      description: 'Team formation and project judging',
-      icon: '💻',
-    },
-    {
       title: 'Anonymous Feedback',
-      description: 'HR surveys and course evaluations',
-      icon: '🔒',
+      description: 'HR surveys and employee feedback without identity tracking',
+      icon: Users,
     },
     {
-      title: 'Quick Polls',
-      description: 'Decision making and opinion gathering',
-      icon: '📊',
+      title: 'Secret Polls',
+      description: 'Confidential voting and opinion gathering',
+      icon: CheckCircle,
     },
     {
-      title: 'Temporary Surveys',
-      description: 'One-time data collection needs',
-      icon: '⏰',
+      title: 'Stealth Surveys',
+      description: 'Market research and data collection that leaves no trace',
+      icon: Eye,
     },
-  ];
-
-  const stats = [
-    { label: 'Forms Created', value: '10,000+', icon: CheckCircle },
-    { label: 'Auto-Deleted', value: '100%', icon: Trash2 },
-    { label: 'No Tracking', value: '0%', icon: Shield },
-    { label: 'Login Required', value: '0%', icon: Lock },
   ];
 
   return (
-    <div className="bg-gray-50">
+    <div className="relative min-h-screen bg-gray-900 overflow-hidden">
+      
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-primary-100 opacity-50"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-          <div className="text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
-                Temporary Forms That{' '}
-                <span className="text-gradient bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">
-                  Auto-Delete
-                </span>
-              </h1>
+      <section className="relative min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-white/5 rounded-full blur-2xl animate-bounce" style={{animationDuration: '3s'}}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-cyan-400/20 rounded-full blur-xl animate-ping" style={{animationDuration: '4s'}}></div>
+        </div>
+        
+        <div className="max-w-6xl mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            {/* Badge */}
+            <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/30 shadow-lg">
+              <Shield className="w-5 h-5 text-white" />
+              <span className="text-white font-medium">StealthForm</span>
+            </div>
+            
+            <h1 className="text-6xl lg:text-8xl font-bold text-white mb-8 leading-tight">
+              Forms That
+              <br />
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Vanish
+              </span>
+            </h1>
+            
+            <p className="text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
+              Create anonymous forms with <strong>instant dual-link generation</strong> and secret response keys. 
+              Collect data in stealth mode, then watch everything disappear without a trace.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <Link to="/create" className="inline-flex items-center justify-center bg-white text-blue-700 hover:bg-gray-50 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl group">
+                <Rocket className="w-6 h-6 mr-3" />
+                Create Stealth Form
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
               
-              <p className="text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto mb-8">
-                Create privacy-focused forms that automatically disappear after a set time. 
-                No login required, completely anonymous, perfect for quick surveys.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link to="/create" className="btn-primary btn-lg group">
-                  Create Your First Form
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                
-                <button 
-                  onClick={() => document.getElementById('features').scrollIntoView({ behavior: 'smooth' })}
-                  className="btn-ghost btn-lg"
-                >
-                  Learn More
-                </button>
-              </div>
-            </motion.div>
-          </div>
+              <button 
+                onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                className="inline-flex items-center justify-center bg-transparent border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300"
+              >
+                <Eye className="w-5 h-5 mr-3" />
+                Explore Features
+              </button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white border-b border-gray-200">
+      {/* How It Works Section */}
+      <section className="py-32 bg-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
+          <div className="text-center mb-20">
+            <h2 className="text-5xl lg:text-6xl font-light text-white mb-12">
+              Stealth Operations
+            </h2>
+            <p className="text-xl text-gray-400 font-light max-w-3xl mx-auto leading-relaxed">
+              Three steps to anonymous data collection with <strong>instant dual-link generation</strong>
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+            {[
+              {
+                title: 'Create & Deploy',
+                description: 'Build your form and get instant shareable link plus a secret response key for data access.',
+                icon: FileText,
+              },
+              {
+                title: 'Share Stealthily',
+                description: 'Distribute the public form link while keeping your private response key secure.',
+                icon: Users,
+              },
+              {
+                title: 'Auto-Destruct',
+                description: 'Forms vanish automatically after expiration. Use your secret key to access responses until then.',
+                icon: Zap,
+              },
+            ].map((step, index) => (
               <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                key={step.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
                 className="text-center"
               >
-                <div className="flex items-center justify-center mb-4">
-                  <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                    <stat.icon className="w-6 h-6 text-primary-600" />
-                  </div>
+                <div className="mb-6">
+                  <step.icon className="w-12 h-12 text-blue-400 mx-auto" />
                 </div>
-                <div className="text-2xl lg:text-3xl font-bold text-gray-900 mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-600">
-                  {stat.label}
-                </div>
+                <h3 className="text-2xl font-light text-white mb-4">
+                  {step.title}
+                </h3>
+                <p className="text-gray-400 leading-relaxed font-light">
+                  {step.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -183,33 +192,35 @@ const OriginalHomePage = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-gray-50">
+      <section id="features" className="py-32 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Unique Features
+          <div className="text-center mb-20">
+            <h2 className="text-5xl lg:text-6xl font-light text-white mb-12">
+              Stealth Features
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              TempForms offers features you won't find in Google Forms or Microsoft Forms
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
+              Advanced privacy features with <strong>dual-link security system</strong> for maximum anonymity.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-soft p-6 hover:shadow-medium transition-shadow duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="text-center group"
               >
-                <div className={`w-12 h-12 ${feature.bgColor} rounded-lg flex items-center justify-center mb-4`}>
-                  <feature.icon className={`w-6 h-6 ${feature.color}`} />
+                <div className="flex items-center justify-center mb-8">
+                  <div className={`w-16 h-16 ${feature.bgColor} border border-gray-700 flex items-center justify-center transition-colors group-hover:border-gray-600`}>
+                    <feature.icon className={`w-8 h-8 ${feature.color} group-hover:scale-110 transition-transform`} />
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-2xl font-light text-white mb-4">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-400 leading-relaxed font-light">
                   {feature.description}
                 </p>
               </motion.div>
@@ -219,33 +230,33 @@ const OriginalHomePage = () => {
       </section>
 
       {/* Use Cases Section */}
-      <section className="py-20 bg-white">
+      <section className="py-32 bg-gray-800/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Perfect For
+          <div className="text-center mb-20">
+            <h2 className="text-5xl lg:text-6xl font-light text-white mb-12">
+              Perfect for covert ops
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              TempForms is ideal for various scenarios where privacy and temporary data collection are important
+            <p className="text-xl text-gray-400 font-light max-w-3xl mx-auto leading-relaxed">
+              Ideal for situations requiring maximum privacy and zero digital footprint.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {useCases.map((useCase, index) => (
               <motion.div
                 key={useCase.title}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gray-50 rounded-xl p-6 text-center hover:bg-gray-100 transition-colors duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="text-center"
               >
-                <div className="text-4xl mb-4">
-                  {useCase.icon}
+                <div className="mb-8">
+                  <useCase.icon className="w-16 h-16 text-blue-400 mx-auto" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-2xl font-light text-white mb-4">
                   {useCase.title}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-400 leading-relaxed font-light">
                   {useCase.description}
                 </p>
               </motion.div>
@@ -254,87 +265,28 @@ const OriginalHomePage = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              How It Works
-            </h2>
-            <p className="text-xl text-gray-600">
-              Simple, fast, and completely anonymous
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                step: '1',
-                title: 'Create Your Form',
-                description: 'Add fields, set expiration time, and customize settings. No account required.',
-                icon: '📝',
-              },
-              {
-                step: '2',
-                title: 'Share the Link',
-                description: 'Get instant shareable links - one for filling, one for viewing responses.',
-                icon: '🔗',
-              },
-              {
-                step: '3',
-                title: 'Auto-Delete',
-                description: 'Forms and responses automatically delete when the time expires. Zero cleanup needed.',
-                icon: '🗑️',
-              },
-            ].map((step, index) => (
-              <motion.div
-                key={step.step}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="text-center"
-              >
-                <div className="relative">
-                  <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                    {step.step}
-                  </div>
-                  {index < 2 && (
-                    <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-primary-200 transform translate-x-8"></div>
-                  )}
-                </div>
-                <div className="text-4xl mb-4">
-                  {step.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-gray-600">
-                  {step.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-20 bg-primary-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-32 bg-gray-900 relative">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-indigo-900/20" />
+        </div>
+        
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-              Ready to Create Your First Temporary Form?
+            <h2 className="text-5xl lg:text-6xl font-light text-white mb-12">
+              Ready to go stealth?
             </h2>
-            <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-              Join thousands of users who trust TempForms for their privacy-focused form needs.
-              Start creating forms that disappear when you're done.
+            <p className="text-xl text-gray-300 mb-16 max-w-2xl mx-auto leading-relaxed font-light">
+              Create anonymous forms with <strong>instant dual-link generation</strong>. Public sharing, private access.
             </p>
-            <Link to="/create" className="btn bg-white text-primary-600 hover:bg-gray-50 btn-lg group">
-              Get Started Now
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            <Link to="/create" className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl group">
+              <Shield className="w-6 h-6 mr-3" />
+              Launch Stealth Mode
+              <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </div>
