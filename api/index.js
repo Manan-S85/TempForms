@@ -92,7 +92,11 @@ module.exports = async (req, res) => {
   if ((url === '/forms' || url === '/api/forms') && method === 'POST') {
     try {
       // Parse request body
-      const { title, description, fields = [], expirationTime = '1hour', customExpirationMinutes } = req.body;
+      let body = req.body;
+      if (typeof body === 'string') {
+        body = JSON.parse(body);
+      }
+      const { title, description, fields = [], expirationTime = '1hour', customExpirationMinutes } = body;
 
       // Basic validation
       if (!title || title.length === 0) {
