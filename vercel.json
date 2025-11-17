@@ -1,22 +1,16 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && npm install && npm run build",
+  "buildCommand": "npm run build",
   "outputDirectory": "frontend/dist",
-  "installCommand": "npm install && cd backend && npm install && cd ../frontend && npm install",
-  "builds": [
-    {
-      "src": "backend/server.js",
-      "use": "@vercel/node"
-    }
-  ],
+  "installCommand": "npm run install-all",
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/backend/server.js"
+      "destination": "/api"
     },
     {
       "source": "/health",
-      "destination": "/backend/server.js"
+      "destination": "/api"
     }
   ]
 }
