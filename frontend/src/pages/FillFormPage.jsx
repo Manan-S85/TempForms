@@ -144,59 +144,39 @@ const FillFormPage = () => {
   }
 
   return (
-    <div className="min-h-screen relative">
-      {/* Hero Section */}
-      <div className="form-header relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 mix-blend-multiply" />
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" />
-          <div className="absolute top-0 right-1/4 w-80 h-80 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-float" style={{animationDelay: '-3s'}} />
-          <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style={{animationDelay: '-1s'}} />
-        </div>
-        
-        <div className="form-header-content relative">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center py-12"
-          >
-            <h1 className="text-3xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+    <div className="min-h-screen bg-gray-50">
+      {/* Simple Clean Header */}
+      <div className="bg-white shadow-sm border-b">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">
               {form.title}
             </h1>
             
             {form.description && (
-              <p className="text-lg text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed">
+              <p className="text-lg text-gray-600 mb-4">
                 {form.description}
               </p>
             )}
 
             {/* Form Info */}
-            <div className="flex flex-wrap justify-center items-center gap-6 text-white/80">
-              <div className="glass px-4 py-2 rounded-full flex items-center space-x-2">
+            <div className="flex justify-center items-center gap-4 text-sm text-gray-500">
+              <div className="flex items-center space-x-1">
                 <Timer className="w-4 h-4" />
-                <span className="font-medium">Expires in: {timeRemaining}</span>
+                <span>Expires in: {timeRemaining}</span>
               </div>
-              
-              {form.responseCount !== null && form.settings?.showResponseCount && (
-                <div className="glass px-4 py-2 rounded-full flex items-center space-x-2">
-                  <Users className="w-4 h-4" />
-                  <span className="font-medium">{form.responseCount} response{form.responseCount !== 1 ? 's' : ''}</span>
-                </div>
-              )}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
       
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 pb-16">
-
-        {/* Form */}
+      {/* Form Container */}
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="card-solid hover-lift"
+          className="bg-white rounded-lg shadow-sm border p-8"
         >
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="card-body space-y-8">

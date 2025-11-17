@@ -611,11 +611,11 @@ const ResponseTable = ({ form, responses, selectedResponses, setSelectedResponse
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Submitted
               </th>
-              {form.fields.map((field) => (
+              {form?.fields?.map((field) => (
                 <th key={field.id} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   {field.label}
                 </th>
-              ))}
+              )) || []}
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -632,11 +632,11 @@ const ResponseTable = ({ form, responses, selectedResponses, setSelectedResponse
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                   {new Date(response.submittedAt).toLocaleString()}
                 </td>
-                {form.fields.map((field) => (
+                {form?.fields?.map((field) => (
                   <td key={field.id} className="px-6 py-4 text-sm text-gray-900">
                     <ResponseValue field={field} value={response.data[field.id]} />
                   </td>
-                ))}
+                )) || []}
               </tr>
             ))}
           </tbody>
@@ -687,7 +687,7 @@ const ResponseCards = ({ form, responses, selectedResponses, setSelectedResponse
             </div>
             
             <div className="space-y-3">
-              {form.fields.map((field) => (
+              {form?.fields?.map((field) => (
                 <div key={field.id}>
                   <label className="text-sm font-medium text-gray-700">
                     {field.label}
@@ -696,7 +696,7 @@ const ResponseCards = ({ form, responses, selectedResponses, setSelectedResponse
                     <ResponseValue field={field} value={response.data[field.id]} />
                   </div>
                 </div>
-              ))}
+              )) || []}
             </div>
           </div>
         </motion.div>
