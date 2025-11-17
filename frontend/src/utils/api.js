@@ -232,7 +232,7 @@ export const apiUtils = {
   
   // Validate response link format
   validateResponseLink: (link) => {
-    return /^[a-f0-9]{24}$/.test(link);
+    return /^[a-zA-Z0-9]+$/.test(link) && link.length >= 3;
   },
   
   // Format error message from API response

@@ -21,7 +21,7 @@ import {
   AlertCircle,
   RefreshCw
 } from 'lucide-react';
-import { formAPI, apiUtils } from '../utils/api';
+import { formAPI, responseAPI, apiUtils } from '../utils/api';
 import { FIELD_TYPES } from '../utils/constants';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -108,12 +108,12 @@ const ViewResponsesPage = () => {
       setLoading(true);
       setError(null);
 
-      if (!apiUtils.validateShareableLink(responseLink)) {
+      if (!apiUtils.validateResponseLink(responseLink)) {
         setError('Invalid response link format');
         return;
       }
 
-      const response = await formAPI.getResponses(responseLink, passwordAttempt);
+      const response = await responseAPI.getAll(responseLink, passwordAttempt);
       
       if (response.success) {
         setForm(response.form);
