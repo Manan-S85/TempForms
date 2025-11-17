@@ -1,0 +1,16 @@
+{
+  "title": "My Test Form",
+  "description": "Testing form creation",
+  "fields": [
+    {
+      "type": "text",
+      "label": "Your Name", 
+      "required": true
+    },
+    {
+      "type": "email",
+      "label": "Email Address",
+      "required": true
+    }
+  ]
+}

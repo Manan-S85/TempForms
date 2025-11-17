@@ -56,9 +56,18 @@ module.exports = async (req, res) => {
     });
   }
 
-  // Get form by shareable link (demo version)
-  if (url.startsWith('/forms/') && method === 'GET') {
-    const shareableLink = url.split('/forms/')[1];
+  // Get form by shareable link (demo version) - handles both /form/ and /forms/ routes
+  if ((url.startsWith('/form/') || url.startsWith('/forms/') || url.startsWith('/api/form/') || url.startsWith('/api/forms/')) && method === 'GET') {
+    let shareableLink;
+    if (url.includes('/api/forms/')) {
+      shareableLink = url.split('/api/forms/')[1];
+    } else if (url.includes('/api/form/')) {
+      shareableLink = url.split('/api/form/')[1];
+    } else if (url.startsWith('/forms/')) {
+      shareableLink = url.split('/forms/')[1];
+    } else {
+      shareableLink = url.split('/form/')[1];
+    }
     
     if (!shareableLink) {
       return res.status(400).json({ error: 'Shareable link is required' });
@@ -68,16 +77,74 @@ module.exports = async (req, res) => {
     return res.status(200).json({
       success: true,
       form: {
-        id: 'demo-form',
-        title: 'Demo Form',
-        description: 'This is a demo form',
+        id: shareableLink,
+        title: 'Sample Form',
+        description: 'This is a sample form for demonstration',
         fields: [
-          { id: 'field_1', type: 'text', label: 'Your Name', required: true },
-          { id: 'field_2', type: 'textarea', label: 'Comments', required: false }
+          { 
+            id: 'field_1', 
+            type: 'text', 
+            label: 'Your Name', 
+            required: true,
+            placeholder: 'Enter your full name'
+          },
+          { 
+            id: 'field_2', 
+            type: 'email', 
+            label: 'Email Address', 
+            required: true,
+            placeholder: 'Enter your email'
+          },
+          { 
+            id: 'field_3', 
+            type: 'textarea', 
+            label: 'Comments', 
+            required: false,
+            placeholder: 'Share your thoughts...'
+          }
         ],
         expiresAt: new Date(Date.now() + 60 * 60 * 1000).toISOString()
+      }
+    });
+  }
+
+  // Get responses by response link (demo version) - matches frontend /responses/:responseLink route
+  if ((url.startsWith('/responses/') || url.startsWith('/api/responses/')) && method === 'GET') {
+    const responseLink = url.includes('/api/responses/') ? url.split('/api/responses/')[1] : url.split('/responses/')[1];
+    
+    if (!responseLink) {
+      return res.status(400).json({ error: 'Response link is required' });
+    }
+
+    // Demo response data
+    return res.status(200).json({
+      success: true,
+      form: {
+        id: responseLink,
+        title: 'Sample Form',
+        description: 'This is a sample form for demonstration'
       },
-      note: "⚠️  This is a demo response. Database integration coming soon!"
+      responses: [
+        {
+          id: 'response_1',
+          submittedAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+          data: {
+            field_1: 'John Doe',
+            field_2: 'john@example.com',
+            field_3: 'This is a great form!'
+          }
+        },
+        {
+          id: 'response_2',
+          submittedAt: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
+          data: {
+            field_1: 'Jane Smith',
+            field_2: 'jane@example.com',
+            field_3: 'Very easy to use interface.'
+          }
+        }
+      ],
+      totalResponses: 2
     });
   }
 
@@ -152,6 +219,39 @@ module.exports = async (req, res) => {
         error: 'Server error',
         message: error.message,
         timestamp: new Date().toISOString()
+      });
+    }
+  }
+
+  // Submit form response (demo version)
+  if ((url.match(/\/forms?\/[^\/]+\/responses$/) || url.match(/\/api\/forms?\/[^\/]+\/responses$/)) && method === 'POST') {
+    try {
+      const body = req.body || {};
+      const { answers } = body;
+
+      if (!answers || typeof answers !== 'object') {
+        return res.status(400).json({
+          error: 'Validation Error',
+          message: 'Answers are required'
+        });
+      }
+
+      // Demo response - in real version this would save to database
+      return res.status(201).json({
+        success: true,
+        message: 'Response submitted successfully!',
+        response: {
+          id: `response_${Date.now()}`,
+          submittedAt: new Date().toISOString(),
+          answers: answers
+        }
+      });
+
+    } catch (error) {
+      console.error('Error submitting response:', error);
+      return res.status(500).json({
+        error: 'Server error',
+        message: error.message
       });
     }
   }
