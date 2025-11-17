@@ -608,6 +608,11 @@ const MultipleChoiceEditor = ({ fieldIndex, register, setValue, options }) => {
 // Form Created Success Component
 const FormCreatedSuccess = ({ form, onCopyLink }) => {
   const navigate = useNavigate();
+  
+  // Safety check to prevent errors
+  if (!form) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -630,7 +635,7 @@ const FormCreatedSuccess = ({ form, onCopyLink }) => {
               </h1>
               <p className="text-gray-600">
                 Your temporary form "<strong>{form.title}</strong>" is ready to use.
-                It will automatically expire in <strong>{form.timeRemaining}</strong>.
+                It will automatically expire based on your selected time setting.
               </p>
             </div>
 
@@ -673,7 +678,7 @@ const FormCreatedSuccess = ({ form, onCopyLink }) => {
                   {window.location.origin}/responses/{form.responseLink}
                 </div>
                 {form.hasResponsePassword && (
-                  <p className="text-sm text-warning-600 mt-2 flex items-center">
+                  <p className="text-sm text-yellow-600 mt-2 flex items-center">
                     <Lock className="w-4 h-4 mr-1" />
                     This link is password protected
                   </p>
