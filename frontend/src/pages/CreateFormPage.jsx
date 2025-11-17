@@ -11,6 +11,7 @@ import {
   Eye, 
   Settings,
   Type,
+  Mail,
   AlignLeft,
   List,
   ToggleLeft,
@@ -62,6 +63,7 @@ const CreateFormPage = () => {
 
   const fieldTypeIcons = {
     [FIELD_TYPES.TEXT]: Type,
+    [FIELD_TYPES.EMAIL]: Mail,
     [FIELD_TYPES.TEXTAREA]: AlignLeft,
     [FIELD_TYPES.MULTIPLE_CHOICE]: List,
     [FIELD_TYPES.YES_NO]: ToggleLeft,
@@ -470,7 +472,7 @@ const FieldEditor = ({ field, index, register, setValue, errors, onRemove, canRe
           )}
         </div>
 
-        {(field.type === FIELD_TYPES.TEXT || field.type === FIELD_TYPES.TEXTAREA) && (
+        {(field.type === FIELD_TYPES.TEXT || field.type === FIELD_TYPES.EMAIL || field.type === FIELD_TYPES.TEXTAREA) && (
           <div>
             <label className="label">Placeholder</label>
             <input
