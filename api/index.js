@@ -149,11 +149,8 @@ module.exports = async (req, res) => {
 
   if ((url === '/forms' || url === '/api/forms') && method === 'POST') {
     try {
-      // Parse request body
-      let body = req.body;
-      if (typeof body === 'string') {
-        body = JSON.parse(body);
-      }
+      // Get request body - Vercel automatically parses JSON
+      const body = req.body || {};
       const { title, description, fields = [], expirationTime = '1hour', customExpirationMinutes } = body;
 
       // Basic validation
@@ -206,9 +203,18 @@ module.exports = async (req, res) => {
 
     } catch (error) {
       console.error('Error creating form:', error);
+      console.error('Request body:', req.body);
+      console.error('Request method:', method);
+      console.error('Request URL:', url);
       return res.status(500).json({
         error: 'Server error',
         message: error.message,
+        details: {
+          hasBody: !!req.body,
+          bodyType: typeof req.body,
+          method: method,
+          url: url
+        },
         timestamp: new Date().toISOString()
       });
     }
