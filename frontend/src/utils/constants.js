@@ -3,6 +3,7 @@
 // Form field types
 export const FIELD_TYPES = {
   TEXT: 'text',
+  EMAIL: 'email',
   TEXTAREA: 'textarea',
   MULTIPLE_CHOICE: 'multiple-choice',
   YES_NO: 'yes-no',
@@ -53,6 +54,19 @@ export const FIELD_TYPE_CONFIG = {
       required: false,
       minLength: 0,
       maxLength: 1000,
+    },
+  },
+  [FIELD_TYPES.EMAIL]: {
+    label: 'Email Input',
+    description: 'Email address field',
+    icon: 'Mail',
+    maxLength: 500,
+    placeholder: 'Enter your email address...',
+    validation: {
+      required: false,
+      minLength: 0,
+      maxLength: 500,
+      pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$',
     },
   },
   [FIELD_TYPES.TEXTAREA]: {

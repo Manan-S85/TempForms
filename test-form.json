@@ -8,9 +8,9 @@
       "required": true
     },
     {
-      "type": "email",
-      "label": "Email Address",
-      "required": true
+      "type": "textarea",
+      "label": "Comments",
+      "required": false
     }
   ]
 }

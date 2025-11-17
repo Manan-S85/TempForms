@@ -78,8 +78,8 @@ module.exports = async (req, res) => {
       success: true,
       form: {
         id: shareableLink,
-        title: 'Sample Form',
-        description: 'This is a sample form for demonstration',
+        title: 'My Test Form',
+        description: 'Testing form creation',
         fields: [
           { 
             id: 'field_1', 
@@ -90,13 +90,6 @@ module.exports = async (req, res) => {
           },
           { 
             id: 'field_2', 
-            type: 'email', 
-            label: 'Email Address', 
-            required: true,
-            placeholder: 'Enter your email'
-          },
-          { 
-            id: 'field_3', 
             type: 'textarea', 
             label: 'Comments', 
             required: false,
@@ -130,8 +123,7 @@ module.exports = async (req, res) => {
           submittedAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
           data: {
             field_1: 'John Doe',
-            field_2: 'john@example.com',
-            field_3: 'This is a great form!'
+            field_2: 'This is a great form!'
           }
         },
         {
@@ -139,8 +131,7 @@ module.exports = async (req, res) => {
           submittedAt: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
           data: {
             field_1: 'Jane Smith',
-            field_2: 'jane@example.com',
-            field_3: 'Very easy to use interface.'
+            field_2: 'Very easy to use interface.'
           }
         }
       ],
